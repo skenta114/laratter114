@@ -100,7 +100,7 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
-        phpmyadmin:
+    phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links:
             - mysql:mysql
