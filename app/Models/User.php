@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,4 +42,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function userTweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    public function tweets()
+    {
+        return $this->belongsToMany(Tweet::class)->withTimestamps();
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(self::class, "follows", "user_id", "following_id")->withTimestamps();
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, "follows", "following_id", "user_id")->withTimestamps();
+    }
+
 }
