@@ -9,22 +9,6 @@ use Auth;
 class FollowController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(User $user)
@@ -48,26 +32,15 @@ class FollowController extends Controller
         return response()->view('user.show', compact('user', 'followers', 'followings'));
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function myfollowsshow()
     {
-        //
+        $user = Auth::user(); // ログインしているユーザーを取得
+        $myfollowing = $user->following()->get(); // フォローしているユーザーを取得
+        $myfollowers = $user->followers()->get(); // フォロワーを取得
+
+        return view('follows.myfollowshow', compact('myfollowing', 'myfollowers'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(User $user)
     {
         Auth::user()->followings()->detach($user->id);

@@ -22,16 +22,7 @@
                 {{$user->created_at}}
               </p>
             </div>
-
-            <div class="flex flex-col mb-4">
-              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">{{$followers->count()}} Followers</p>
-              @foreach($followers as $follower)
-              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="followers{{$loop->index}}">
-                {{$follower->name}}
-              </p>
-              @endforeach
-            </div>
-
+            
             <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">{{$followings->count()}} Following</p>
               @foreach($followings as $following)
