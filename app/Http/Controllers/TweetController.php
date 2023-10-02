@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Tweet;
+use App\TweetUser;
 use Auth;
 use App\Models\User;
 
@@ -60,7 +61,7 @@ class TweetController extends Controller
         $tweet = Tweet::find($id);
         return response()->view('tweet.show', compact('tweet'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
