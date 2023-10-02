@@ -11,6 +11,12 @@
         <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-800">
           <div class="mb-6">
             <div class="flex flex-col mb-4">
+              <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">Name</p>
+              <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="name">
+                {{$tweet->user->name}}
+              </p>
+            </div>
+            <div class="flex flex-col mb-4">
               <p class="mb-2 uppercase font-bold text-lg text-gray-800 dark:text-gray-200">Tweet</p>
               <p class="py-2 px-3 text-gray-800 dark:text-gray-200" id="tweet">
                 {{$tweet->tweet}}
@@ -53,10 +59,6 @@
                     </form>
                     @endif
                   </div>
-                  <a href="{{ route('tweet.show',$tweet->id) }}">
-                    <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">{{$tweet->tweet}}</h3>
-                  </a>
-                  <div class="flex">
                     <!-- favorite 状態で条件分岐 -->
                     @if($tweet->users()->where('user_id', Auth::id())->exists())
                     <!-- unfavorite ボタン -->
